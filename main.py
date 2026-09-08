@@ -72,6 +72,9 @@ sum_total_price = pd.read_sql("""
     FROM orderDetails
 """, conn).sum()
 
+tables = pd.read_sql("""SELECT name FROM sqlite_master WHERE type='table';""", conn)
+print(tables)
+
 # STEP 9
 # Replace None with your code
 df_day_month_year = pd.read_sql("""
@@ -79,7 +82,7 @@ df_day_month_year = pd.read_sql("""
     strftime('%d', orderDate) AS day,
     strftime('%m', orderDate) AS month,
     strftime('%Y', orderDate) AS year
-    FROM orderDetails
+    FROM orders
 """, conn)
 
 # Close the connection
